@@ -71,7 +71,6 @@ set<string> getSet(string user_url, int level)
 		for (string url : urls) {
 			if (url_set.find(url) == url_set.end())
 				continue;
-			cout << "---- PARENT: " << url << " ----" << endl;
 			cur_urls = findLinks(perform(url));
 			for (string url : cur_urls) {
 				url_set.insert(url);
@@ -86,10 +85,12 @@ set<string> getSet(string user_url, int level)
 int main(int argc, char *argv[])
 {
 	if (argc < 2) {
-		cout << "Too few arguments." << endl;
+		cout << "Too few arguments. Usage:\n" << argv[0]
+			<< " 5\nwhere 5 is depth." << endl;
 		return 0;
 	}
 	int level = atoi(argv[1]);
+	cout << "Input web address to start:" << endl;
 	string url;
 	cin >> url;
 	set<string> url_set = getSet(url, level);

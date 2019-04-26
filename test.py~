@@ -1,5 +1,0 @@
-import requests
-
-main_link = 'https://google.kz'
-res = requests.get(main_link)
-#body = res.text
