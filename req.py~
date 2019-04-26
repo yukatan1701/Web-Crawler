@@ -1,0 +1,20 @@
+import re
+import requests
+
+#main_link = 'http://msu.kz'
+main_link = "https://en.wikipedia.org/wiki/Russian_chanson")
+links = set([main_link])
+last_link_set = set([main_link])
+for i in range(2):
+    new_link_set = set()
+    for last_link in last_link_set:
+        res = requests.get(last_link)
+        body = res.text
+        new_links = re.findall(r"http[s]?://[\w\.\?/%]+", body)
+        new_link_set.update(new_links)
+    last_link_set = new_link_set
+    links.update(new_link_set)
+
+for link in links:
+    print(link)
+
