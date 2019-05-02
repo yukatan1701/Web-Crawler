@@ -5,10 +5,11 @@ make
 ```
 2. Run:
 ```
-./crawler 5
+./crawler -l https://github.com -d 4
 ```
-where 5 is the search depth. Then input the address to start, for example:
-```
-http://msu.kz
-```
+`-l` is a starting link.
+`-d` is a search depth.
+
+If you don't want to use parameters, crawler will choose the default values: **http://msu.kz** for link and *3* for depth.
+
 3. Success!

@@ -82,18 +82,25 @@ set<string> getSet(string user_url, int level)
 	return url_set;
 }
 
+void parseArgs(string & url, unsigned int & depth, int argc, char *argv[])
+{
+	for (int i = 1; i < argc; i++) {
+		if (strcmp(argv[i], "-l") == 0) {
+			if (i + 1 < argc)
+				url.assign(argv[i + 1]);
+		} else if (strcmp(argv[i], "-d") == 0) {
+			if (i + 1 < argc)
+				depth = atoi(argv[i + 1]);
+		}
+	}
+}
+
 int main(int argc, char *argv[])
 {
-	if (argc < 2) {
-		cout << "Too few arguments. Usage:\n" << argv[0]
-			<< " 5\nwhere 5 is depth." << endl;
-		return 0;
-	}
-	int level = atoi(argv[1]);
-	cout << "Input web address to start:" << endl;
-	string url;
-	cin >> url;
-	set<string> url_set = getSet(url, level);
+	unsigned int depth = 3;
+	string url("http://msu.kz");
+	parseArgs(url, depth, argc, argv);
+	set<string> url_set = getSet(url, depth);
 	for (string url : url_set)
 		cout << url << endl;
 	return 0;
